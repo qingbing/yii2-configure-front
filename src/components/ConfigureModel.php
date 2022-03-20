@@ -27,6 +27,9 @@ abstract class ConfigureModel extends Model
      */
     public static function getDb()
     {
-        return Yii::$app->get('db_configure');
+        if (Yii::$app->has('db_configure')) {
+            return Yii::$app->get('db_configure');
+        }
+        return Yii::$app->getDb();
     }
 }
