@@ -40,11 +40,12 @@ class FormOptionLogic extends BaseCacheLogic
         $options = FormOption::getEnableOptions($this->params['key']);
         $R       = [];
         foreach ($options as $option) {
-            $_               = [];
-            $_['field']      = $option->field;
-            $_['label']      = $option->label;
-            $_['input_type'] = $option->input_type;
-            $_['default']    = $option->default;
+            $_                = [];
+            $_['field']       = $option->field;
+            $_['label']       = $option->label;
+            $_['input_type']  = $option->input_type;
+            $_['default']     = $option->default;
+            $_['placeholder'] = $option->placeholder;
             is_array($option->exts) && count($option->exts) > 0 && ($_['exts'] = $option->exts);
             if (
                 (
