@@ -54,11 +54,8 @@ class BlockInfoLogic extends BaseCacheLogic
         if (!$category['is_enable']) {
             return ['is_enable' => 0];
         }
-        if (in_array($category['type'], [
-            BlockCategory::TYPE_CONTENT,
-            BlockCategory::TYPE_IMAGE,
-            BlockCategory::TYPE_IMAGE_LINK,
-        ])) {
+        if (!isset(BlockCategory::LIST_TYPES[$category['type']])) {
+            // 非列表: content, image, image-link
             switch ($category['type']) {
                 case BlockCategory::TYPE_CONTENT:
                     unset($category['src']);
@@ -73,15 +70,23 @@ class BlockInfoLogic extends BaseCacheLogic
             return $category;
         }
         unset($category['src'], $category['content']);
+        // 删选字段
+        $fields = [
+            "label",
+            "description",
+        ];
+        if (isset(BlockCategory::IMAGE_TYPES[$category['type']])) {
+            // 图片列表
+            $fields[] = 'src';
+        }
+        if (isset(BlockCategory::LINK_TYPES[$category['type']])) {
+            // 链接列表
+            $fields[] = 'link';
+            $fields[] = 'is_blank';
+        }
         // 选项
         $query               = BlockOption::find()
-            ->select([
-                "label",
-                "link",
-                "src",
-                "is_blank",
-                "description",
-            ])
+            ->select($fields)
             ->andWhere(['=', 'key', $this->params['key']])
             ->andWhere(['=', 'is_enable', IS_ENABLE_YES])
             ->orderBy('sort_order ASC');

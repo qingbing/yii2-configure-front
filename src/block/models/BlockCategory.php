@@ -88,7 +88,7 @@ class BlockCategory extends ConfigureModel
      *
      * @return array
      */
-    static public function types()
+    public static function types()
     {
         return [
             self::TYPE_CONTENT           => '内容',
@@ -102,4 +102,36 @@ class BlockCategory extends ConfigureModel
             self::TYPE_IMAGES_LINKS      => '链接图片集',
         ];
     }
+
+    /**
+     * 支持选项的类型
+     */
+    const LIST_TYPES = [
+        self::TYPE_CLOUD_WORDS       => '云词',
+        self::TYPE_CLOUD_WORDS_LINKS => '链接云词',
+        self::TYPE_LIST              => '列表',
+        self::TYPE_LIST_LINKS        => '链接列表',
+        self::TYPE_IMAGES            => '图片集',
+        self::TYPE_IMAGES_LINKS      => '链接图片集',
+    ];
+
+    /**
+     * 图片类型
+     */
+    const IMAGE_TYPES = [
+        self::TYPE_IMAGE        => '图片',
+        self::TYPE_IMAGE_LINK   => '链接图片',
+        self::TYPE_IMAGES       => '图片集',
+        self::TYPE_IMAGES_LINKS => '链接图片集',
+    ];
+
+    /**
+     * 连接类型
+     */
+    const LINK_TYPES = [
+        self::TYPE_IMAGE_LINK        => '链接图片',
+        self::TYPE_CLOUD_WORDS_LINKS => '链接云词',
+        self::TYPE_LIST_LINKS        => '链接列表',
+        self::TYPE_IMAGES_LINKS      => '链接图片集',
+    ];
 }
