@@ -10,7 +10,7 @@ use Zf\Helper\Exceptions\BusinessException;
  * This is the model class for table "{{%block_category}}".
  *
  * @property string $key 引用标识
- * @property string $type 页面区块类型[content, image-link, cloud-words, cloud-words-links, list, list-links, images, image-links]
+ * @property string $type 页面区块类型[content, image, image-link, cloud-words, cloud-words-links, list, list-links, images, image-links]
  * @property string $name 区块名称
  * @property string $description 区块描述
  * @property int $sort_order 排序
@@ -74,6 +74,7 @@ class BlockCategory extends ConfigureModel
     }
 
     const TYPE_CONTENT           = 'content';
+    const TYPE_IMAGE             = 'image';
     const TYPE_IMAGE_LINK        = 'image-link';
     const TYPE_CLOUD_WORDS       = 'cloud-words';
     const TYPE_CLOUD_WORDS_LINKS = 'cloud-words-links';
@@ -91,7 +92,8 @@ class BlockCategory extends ConfigureModel
     {
         return [
             self::TYPE_CONTENT           => '内容',
-            self::TYPE_IMAGE_LINK        => '图片',
+            self::TYPE_IMAGE             => '图片',
+            self::TYPE_IMAGE_LINK        => '链接图片',
             self::TYPE_CLOUD_WORDS       => '云词',
             self::TYPE_CLOUD_WORDS_LINKS => '链接云词',
             self::TYPE_LIST              => '列表',

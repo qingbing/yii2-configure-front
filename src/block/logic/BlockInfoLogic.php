@@ -56,11 +56,23 @@ class BlockInfoLogic extends BaseCacheLogic
         }
         if (in_array($category['type'], [
             BlockCategory::TYPE_CONTENT,
+            BlockCategory::TYPE_IMAGE,
             BlockCategory::TYPE_IMAGE_LINK,
         ])) {
+            switch ($category['type']) {
+                case BlockCategory::TYPE_CONTENT:
+                    unset($category['src']);
+                    break;
+                case BlockCategory::TYPE_IMAGE:
+                    unset($category['content']);
+                    break;
+                default:
+                    break;
+            }
             // 内容和图片链接没有选项
             return $category;
         }
+        unset($category['src'], $category['content']);
         // 选项
         $query               = BlockOption::find()
             ->select([
