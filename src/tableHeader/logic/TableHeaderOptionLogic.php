@@ -55,6 +55,7 @@ class TableHeaderOptionLogic extends BaseCacheLogic
             empty($option->component) || ($_['component'] = $option->component);
             empty($option->options) || ($_['options'] = $option->options);
             empty($option->params) || ($_['params'] = $option->params);
+            1 == $option->is_image && ($_['is_image'] = true);
             1 == $option->is_tooltip && ($_['is_tooltip'] = true);
             1 == $option->is_resizable && ($_['is_resizable'] = true);
             1 == $option->is_editable && ($_['is_editable'] = true);
